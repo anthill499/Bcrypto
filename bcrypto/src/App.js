@@ -1,7 +1,7 @@
 /* FFFCF5 */
-
-import { HashRouter, Routes, Route } from 'react-router-dom';
-import LandingPage from './components/Landing/landing';
+import React from "react";
+import { HashRouter, Routes, Route } from "react-router-dom";
+import LandingPage from "./components/Landing/landing";
 
 function App() {
   return (
