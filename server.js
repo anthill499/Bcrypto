@@ -2,7 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const app = express();
 const cors = require("cors");
-const path = require("path");
+// const path = require("path");
 
 const port = 5000;
 
@@ -15,5 +15,5 @@ app.get("/test", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Bcryto server is running on Port ${port}`);
+  console.log(`Bcryto's server is running on Port ${port}`);
 });
