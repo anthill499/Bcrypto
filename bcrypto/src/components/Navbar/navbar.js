@@ -1,7 +1,10 @@
-import React from 'react';
-import './navbar.css';
-
+import React, { useState } from "react";
+import "./navbar.css";
+import { useNavigate } from "react-router";
+import DarkModeToggle from "react-dark-mode-toggle";
 const Navbar = () => {
+  const [darkMode, setDarkMode] = useState(false);
+  const navigate = useNavigate();
   return (
     <div id="navbar-background">
       <div id="navbar-container">
@@ -13,8 +16,18 @@ const Navbar = () => {
           <li className="navbar-item">Our story</li>
         </ul>
         <ul id="navbar-auth-container">
-          <button id="navbar-login-button">Log In</button>
-          <button id="navbar-signup-button">Sign Up</button>
+          <button id="navbar-login-button" onClick={() => navigate("/signin")}>
+            Log In
+          </button>
+          <button id="navbar-signup-button" onClick={() => navigate("/signup")}>
+            Sign Up
+          </button>
+          <DarkModeToggle
+            onChange={() => setDarkMode(!darkMode)}
+            checked={darkMode}
+            size={100}
+          />
+          <li>{`${darkMode}`}</li>
         </ul>
       </div>
     </div>

@@ -26,7 +26,7 @@
 }
 
 #navbar {
-  font-family: 'Public Sans', sans-serif;
+  font-family: "Public Sans", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,7 +47,7 @@
 #navbar-auth-container button {
   border: none;
   padding: 10px;
-  font-family: 'Public Sans', sans-serif;
+  font-family: "Public Sans", sans-serif;
   border-radius: 50px;
   padding: 10px 24px;
   cursor: pointer;
