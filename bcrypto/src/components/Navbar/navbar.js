@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import "./navbar.css";
 import { useNavigate } from "react-router";
 import DarkModeToggle from "react-dark-mode-toggle";
+// import { themeReducer } from "../../states/reducers/darkModeReducer";
+// import logger from "use-reducer-logger";
+
 const Navbar = () => {
+  // const [themeState, dispatch] = useReducer(logger(themeReducer), null);
   const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
   return (
