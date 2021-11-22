@@ -15,7 +15,7 @@ export const darkTheme = {
     backgroundColor: "#000000e8",
   },
   misc: {
-    backgroundColor: "#59ffff",
+    backgroundColor: "#99ffff",
   },
   fontProperties: {
     fontColor: "#ececec",

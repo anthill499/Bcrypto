@@ -7,12 +7,12 @@ const Navbar = () => {
   const navigate = useNavigate();
   const themeGlobal = useContext(ThemeContext);
   console.log(themeGlobal);
-  const { fontProperties, general, misc } = themeGlobal.currTheme;
+  const { fontProperties, misc } = themeGlobal.currTheme;
+
   return (
     <div
       id="navbar-background"
       style={{
-        backgroundColor: general.backgroundColor,
         color: fontProperties.fontColor,
       }}
     >
