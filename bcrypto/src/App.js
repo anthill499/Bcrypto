@@ -10,6 +10,7 @@ import { changeTheme } from "./states/actions/themeActions";
 
 function App() {
   const [theme, dispatchTheme] = useReducer(themeReducer, initialTheme);
+  document.body.style.backgroundColor = theme.currTheme.general.backgroundColor;
   return (
     <ThemeContext.Provider
       value={{
