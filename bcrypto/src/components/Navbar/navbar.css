@@ -6,7 +6,7 @@
   position: sticky;
   top: 0;
   left: 0;
-  background-color: white;
+  /* background-color: white; */
   width: 100%;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -68,12 +68,11 @@
 
 #navbar-signup-button {
   transition: 0.2s;
-  background-color: rgb(255, 70, 70);
+  /* background-color: #ff4646; */
 }
 
 #navbar-signup-button:hover {
   transition: 0.2s;
   background-color: rgb(223, 75, 75);
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: #32325d40 0px 2px 5px -1px, #0000004d 0px 1px 3px -1px;
 }

@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import "./navbar.css";
 import { useNavigate } from "react-router";
 import DarkModeToggle from "react-dark-mode-toggle";
-// import { themeReducer } from "../../states/reducers/darkModeReducer";
-// import logger from "use-reducer-logger";
-
+import { ThemeContext } from "../../states/actions/contexts";
 const Navbar = () => {
-  // const [themeState, dispatch] = useReducer(logger(themeReducer), null);
-  const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
+  const themeGlobal = useContext(ThemeContext);
+  console.log(themeGlobal);
+  const { fontProperties, general, misc } = themeGlobal.currTheme;
   return (
-    <div id="navbar-background">
+    <div
+      id="navbar-background"
+      style={{
+        backgroundColor: general.backgroundColor,
+        color: fontProperties.fontColor,
+      }}
+    >
       <div id="navbar-container">
         <ul id="navbar">
           <div id="logo">Bcrypto</div>
@@ -23,15 +28,18 @@ const Navbar = () => {
           <button id="navbar-login-button" onClick={() => navigate("/signin")}>
             Log In
           </button>
-          <button id="navbar-signup-button" onClick={() => navigate("/signup")}>
+          <button
+            id="navbar-signup-button"
+            onClick={() => navigate("/signup")}
+            style={{ backgroundColor: misc.backgroundColor }}
+          >
             Sign Up
           </button>
           <DarkModeToggle
-            onChange={() => setDarkMode(!darkMode)}
-            checked={darkMode}
+            onChange={() => themeGlobal.changeTheme()}
+            checked={themeGlobal.darkMode}
             size={100}
           />
-          <li>{`${darkMode}`}</li>
         </ul>
       </div>
     </div>

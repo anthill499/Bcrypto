@@ -1,14 +1,19 @@
 import { CHANGETHEME } from "../actions/types";
+import { lightTheme, darkTheme } from "../../themes";
 
-const initialState = {
+export const initialTheme = {
   darkMode: false,
+  currTheme: lightTheme,
 };
 
-export const themeReducer = (state = initialState, action) => {
+export const themeReducer = (state = initialTheme, action) => {
   switch (action.type) {
     case CHANGETHEME:
+      const bool = !state.darkMode;
+      const currTheme = bool ? darkTheme : lightTheme;
       return {
-        darkMode: !state.darkMode,
+        darkMode: bool,
+        currTheme,
       };
     default:
       return state;
