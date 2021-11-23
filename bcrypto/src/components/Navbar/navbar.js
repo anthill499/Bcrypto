@@ -20,7 +20,7 @@ const Navbar = () => {
           <div id="logo">Bcrypto</div>
           <li className="navbar-item">Pricing</li>
           <li className="navbar-item">Market</li>
-          <li className="navbar-item">Support</li>
+          <li className="navbar-item">Contact Us</li>
           <li className="navbar-item">Our story</li>
         </ul>
         <ul id="navbar-auth-container">

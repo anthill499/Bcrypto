@@ -4,9 +4,16 @@
 }
 
 #clip {
-  clip-path: polygon(0 0, 100% 0, 100% 38%, 0 75%);
-  background-color: #ff4646;
-  z-index: 9999;
+  clip-path: polygon(0 0, 100% 0, 100% 48%, 0 100%);
+  position: absolute;
+  z-index: 1;
   width: 100vw;
   height: 700px;
+}
+
+.splash-text {
+  z-index: 2 !important;
+  position: relative;
+  font-family: "Public Sans", sans-serif;
+  font-size: 25px;
 }

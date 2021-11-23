@@ -4,6 +4,7 @@ export const lightTheme = {
   },
   misc: {
     backgroundColor: "#fe5c5c",
+    artColor: "#fe5c5c",
   },
   fontProperties: {
     fontColor: "black",
