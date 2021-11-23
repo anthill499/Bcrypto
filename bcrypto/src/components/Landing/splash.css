@@ -1,5 +1,12 @@
 #splash-container {
-  background-color: rgb(255, 70, 70);
+  width: 100vw;
+  height: 700px;
+}
+
+#clip {
+  clip-path: polygon(0 0, 100% 0, 100% 38%, 0 75%);
+  background-color: #ff4646;
+  z-index: 9999;
   width: 100vw;
   height: 700px;
 }

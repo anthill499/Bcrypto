@@ -4,6 +4,7 @@ const initialState = {
   email: "",
   firstName: "",
   lastName: "",
+  setTheme: "",
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -15,6 +16,7 @@ export const authReducer = (state = initialState, action) => {
         email: action.email,
         firstName: action.firstName,
         lastName: action.lastName,
+        setTheme: action.setTheme,
       };
     case LOGOUT:
       return initialState;

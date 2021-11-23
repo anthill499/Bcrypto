@@ -6,7 +6,6 @@ import { ThemeContext } from "../../states/actions/contexts";
 const Navbar = () => {
   const navigate = useNavigate();
   const themeGlobal = useContext(ThemeContext);
-  console.log(themeGlobal);
   const { fontProperties, misc } = themeGlobal.currTheme;
 
   return (

@@ -3,7 +3,7 @@ export const lightTheme = {
     backgroundColor: "white",
   },
   misc: {
-    backgroundColor: "#ff4646",
+    backgroundColor: "#fe5c5c",
   },
   fontProperties: {
     fontColor: "black",
@@ -16,8 +16,11 @@ export const darkTheme = {
   },
   misc: {
     backgroundColor: "#99ffff",
+    artColor: "#99ffffcc",
   },
   fontProperties: {
     fontColor: "#ececec",
   },
 };
+
+// #99ffffcc
