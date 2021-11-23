@@ -78,6 +78,7 @@ select {
   }
 }
 
-li:hover {
+li:hover,
+button:hover {
   cursor: pointer;
 }
