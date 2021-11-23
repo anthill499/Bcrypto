@@ -1,6 +1,6 @@
 import { CHANGETHEME } from "./types";
 
-export const changeTheme = (data) => {
+export const changeTheme = () => {
   return {
     type: CHANGETHEME,
   };

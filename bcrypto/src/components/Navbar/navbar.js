@@ -7,7 +7,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const themeGlobal = useContext(ThemeContext);
   const { fontProperties, misc } = themeGlobal.currTheme;
-
   return (
     <div
       id="navbar-background"
