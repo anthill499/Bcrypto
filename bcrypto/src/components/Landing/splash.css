@@ -5,8 +5,16 @@
   justify-content: center;
 }
 
-#clip {
+.clip {
   clip-path: polygon(0 0, 100% 0, 100% 48%, 0 100%);
+  position: absolute;
+  z-index: 1;
+  width: 100vw;
+  height: 700px;
+}
+
+.clip-two {
+  clip-path: polygon(0 70%, 100% 15%, 100% 100%, 0% 100%);
   position: absolute;
   z-index: 1;
   width: 100vw;
