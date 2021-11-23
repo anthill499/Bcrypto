@@ -2,14 +2,12 @@ import React, { useContext } from "react";
 import "./splash.css";
 import { ThemeContext } from "../../states/actions/contexts";
 import Image from "../../assets/images/bcryptoart.png";
-// import appleBlack from "../../assets/images/appleblack.svg";
-// import googlePlay from "../../assets/images/google-play-badge.png";
 import { useNavigate } from "react-router";
 
 const Splash = () => {
   const themeGlobal = useContext(ThemeContext);
   const navigate = useNavigate();
-  const { misc, general, fontProperties } = themeGlobal.currTheme;
+  const { misc, general, fontProperties, appleIcon } = themeGlobal.currTheme;
   return (
     <div id="splash-container">
       <div id="clip" style={{ backgroundColor: misc.artColor }}></div>
@@ -34,10 +32,9 @@ const Splash = () => {
         >
           Get Started
         </button>
-        {/* <div className="google-apple-buttons">
-          <img src={appleBlack} alt="apple-icon" />
-          <img src={googlePlay} alt="apple-icon" />
-        </div> */}
+        <div className="google-apple-buttons">
+          <img src={appleIcon} alt="apple-icon" />
+        </div>
       </div>
       <img src={Image} alt="art" className="splash-picture" />
     </div>

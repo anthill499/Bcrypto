@@ -1,3 +1,6 @@
+import appleBlack from "./assets/images/appleblack.svg";
+import appleWhite from "./assets/images/applewhite.svg";
+
 export const lightTheme = {
   general: {
     backgroundColor: "white",
@@ -9,6 +12,7 @@ export const lightTheme = {
   fontProperties: {
     fontColor: "black",
   },
+  appleIcon: appleBlack,
 };
 
 export const darkTheme = {
@@ -22,6 +26,7 @@ export const darkTheme = {
   fontProperties: {
     fontColor: "#ececec",
   },
+  appleIcon: appleWhite,
 };
 
 // #99ffffcc
