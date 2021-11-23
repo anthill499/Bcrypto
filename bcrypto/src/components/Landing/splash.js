@@ -14,7 +14,7 @@ const Splash = () => {
     <div id="splash-container">
       <div id="clip" style={{ backgroundColor: misc.artColor }}></div>
       <div className="splash-text" style={{ color: general.backgroundColor }}>
-        <div>
+        <div id="title">
           <h1>Cryptocurrency.</h1>
           <h2>Made simple.</h2>
         </div>

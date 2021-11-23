@@ -17,12 +17,11 @@
   z-index: 2;
   position: relative;
   font-family: "Public Sans", sans-serif;
-  font-size: 25px;
   width: 25vw;
   margin-top: 60px;
   display: flex;
   flex-direction: column;
-  gap: 2%;
+  gap: 3%;
 }
 
 .splash-picture {
@@ -37,8 +36,15 @@
   padding: 10px 20px;
   width: 40%;
   font-family: "Shippori Antique B1", sans-serif;
+  font-size: 2rem;
 }
 
-h1, h2 {
+h1,
+h2 {
   text-shadow: 6px 4px 3px rgba(0, 0, 0, 0.205);
+  font-size: 4.2rem;
+}
+
+.splash-text p {
+  font-size: 2rem;
 }
