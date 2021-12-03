@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import styles from "../../styles/auth.module.scss";
 const Signup = () => {
@@ -42,7 +42,7 @@ const Signup = () => {
         Already have an account? Click{" "}
         <span
           className={styles.redirectLink}
-          onClick={() => navigate("/signin", { replace: true })}
+          onClick={() => navigate("/login", { replace: true })}
         >
           Here
         </span>

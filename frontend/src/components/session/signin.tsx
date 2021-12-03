@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import styles from "../../styles/auth.module.scss";
-const Signup = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordTwo, setPasswordTwo] = useState("");
-  const navigate = useNavigate();
 
+const Signin = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   return (
     <div>
-      <h3>Create your Bcrypto account!</h3>
+      <h3>Sign in to your Bcrypto account!</h3>
       <form>
         <label htmlFor="username">Username</label>
         <input
@@ -18,31 +16,19 @@ const Signup = () => {
           value={username}
           onChange={(e) => setUsername(e.currentTarget.value)}
         />
-        <label htmlFor="password">Email</label>
-        <input
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.currentTarget.value)}
-        />
         <label htmlFor="password">Password</label>
         <input
           name="password"
           value={password}
           onChange={(e) => setPassword(e.currentTarget.value)}
         />
-        <label htmlFor="password2">Confirm Password</label>
-        <input
-          name="password2"
-          value={passwordTwo}
-          onChange={(e) => setPasswordTwo(e.currentTarget.value)}
-        />
-        <button>Create Account</button>
+        <button>Sign In</button>
       </form>
       <p>
-        Already have an account? Click{" "}
+        New to Bcrypto? Click{" "}
         <span
           className={styles.redirectLink}
-          onClick={() => navigate("/signin", { replace: true })}
+          onClick={() => navigate("/register", { replace: true })}
         >
           Here
         </span>
@@ -51,4 +37,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Signin;
