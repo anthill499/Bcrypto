@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import styles from "../../styles/auth.module.scss";
 
-const Signin = () => {
+const Signin: React.FC = (): JSX.Element => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();

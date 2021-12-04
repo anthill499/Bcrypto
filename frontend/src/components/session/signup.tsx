@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import styles from "../../styles/auth.module.scss";
 
-const Signup = () => {
+const Signup: React.FC = (): JSX.Element => {
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
