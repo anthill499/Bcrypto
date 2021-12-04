@@ -6,9 +6,11 @@ const Signin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
   return (
-    <div>
-      <h3>Sign in to your Bcrypto account!</h3>
+    <div className={styles.authContainer}>
+      <h3>Bcrypto</h3>
+      <p>Sign in</p>
       <form>
         <label htmlFor="username">Username</label>
         <input

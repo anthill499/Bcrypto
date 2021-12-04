@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import styles from "../../styles/auth.module.scss";
+
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -9,8 +10,9 @@ const Signup = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className={styles.authContainer}>
       <h3>Create your Bcrypto account!</h3>
+      <p></p>
       <form>
         <label htmlFor="username">Username</label>
         <input
