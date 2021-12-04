@@ -1,5 +1,9 @@
-.redirectLink {
-  color: blue;
+.authDiv {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .authContainer {
@@ -7,11 +11,8 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  outline: 1px solid grey;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
+  padding: 2%;
+  outline: 1px solid #e4e4e4;
   h3 {
     font-size: 3rem;
     text-align: center;
@@ -21,8 +22,36 @@
     flex-direction: column;
     font-size: 1.8rem;
     display: inherit;
+    .rowContainer {
+      display: flex;
+      input {
+        width: 48%;
+      }
+      justify-content: space-between;
+    }
+    button {
+      margin: 10px 0px;
+    }
+    input {
+      margin: 10px 0px;
+      padding-left: 8px;
+      border: 0.5px solid #dcdee2;
+      padding: 2% 0px 3% 9px;
+    }
+    input::placeholder {
+      font-size: 1.4rem;
+    }
   }
   p {
     font-size: 1.4rem;
+    color: rgb(25, 25, 255);
+    text-align: center;
+    cursor: pointer;
+    font-weight: 500;
   }
+}
+
+.subLabel {
+  font-size: 1.6rem;
+  text-align: center;
 }
