@@ -18,12 +18,14 @@ const Signin = () => {
             value={username}
             onChange={(e) => setUsername(e.currentTarget.value)}
             placeholder="Username"
+            className={styles.authInput}
           />
           <input
             name="password"
             value={password}
             onChange={(e) => setPassword(e.currentTarget.value)}
             placeholder="Password"
+            className={styles.authInput}
           />
           <button>Sign In</button>
         </form>

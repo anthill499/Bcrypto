@@ -11,8 +11,10 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 2%;
-  outline: 1px solid #e4e4e4;
+  padding: 30px;
+  outline: 1px solid #dad8d8;
+  border-radius: 4px;
+  min-width: 426px;
   h3 {
     font-size: 3rem;
     text-align: center;
@@ -36,10 +38,12 @@
       margin: 10px 0px;
       padding-left: 8px;
       border: 0.5px solid #dcdee2;
-      padding: 2% 0px 3% 9px;
-    }
-    input::placeholder {
+      padding: 3% 0px 3% 10px;
+      border-radius: 3px;
       font-size: 1.4rem;
+      &::placeholder {
+        font-size: 1.4rem;
+      }
     }
   }
   p {
