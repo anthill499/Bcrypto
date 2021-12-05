@@ -71,7 +71,10 @@ const Signup: React.FC = (): JSX.Element => {
             <input
               name="firstname"
               value={firstName}
-              onChange={(e) => setFirstName(e.currentTarget.value)}
+              onChange={(e) => {
+                if (beErrors?.firstName) delete beErrors.firstName;
+                setFirstName(e.currentTarget.value);
+              }}
               placeholder="First Name"
               style={{
                 outline: beErrors?.firstName
@@ -82,7 +85,10 @@ const Signup: React.FC = (): JSX.Element => {
             <input
               name="lastname"
               value={lastName}
-              onChange={(e) => setLastName(e.currentTarget.value)}
+              onChange={(e) => {
+                if (beErrors?.lastName) delete beErrors.lastName;
+                setLastName(e.currentTarget.value);
+              }}
               placeholder="Last Name"
               style={{
                 outline: beErrors?.lastName
@@ -91,10 +97,19 @@ const Signup: React.FC = (): JSX.Element => {
               }}
             />
           </div>
+          {(beErrors?.firstName || beErrors?.lastName) && (
+            <div className={styles.rowContainer}>
+              <div className={styles.errors}>{beErrors.firstName}</div>
+              <div className={styles.errors}>{beErrors.lastName}</div>
+            </div>
+          )}
           <input
             name="username"
             value={username}
-            onChange={(e) => setUsername(e.currentTarget.value)}
+            onChange={(e) => {
+              if (beErrors?.username) delete beErrors.username;
+              setUsername(e.currentTarget.value);
+            }}
             placeholder="Username"
             style={{
               outline: beErrors?.username
@@ -102,10 +117,16 @@ const Signup: React.FC = (): JSX.Element => {
                 : "0.5px solid #dcdee2",
             }}
           />
+          {beErrors?.username && (
+            <span className={styles.errors}>{beErrors?.username}</span>
+          )}
           <input
             name="email"
             value={email}
-            onChange={(e) => setEmail(e.currentTarget.value)}
+            onChange={(e) => {
+              if (beErrors?.email) delete beErrors.email;
+              setEmail(e.currentTarget.value);
+            }}
             placeholder="Email"
             style={{
               outline: beErrors?.email
@@ -113,11 +134,17 @@ const Signup: React.FC = (): JSX.Element => {
                 : "0.5px solid #dcdee2",
             }}
           />
+          {beErrors?.email && (
+            <span className={styles.errors}>{beErrors?.email}</span>
+          )}
           <div className={styles.rowContainer}>
             <input
               name="password"
               value={password}
-              onChange={(e) => setPassword(e.currentTarget.value)}
+              onChange={(e) => {
+                if (beErrors?.password) delete beErrors.password;
+                setPassword(e.currentTarget.value);
+              }}
               placeholder="Password"
               style={{
                 outline: beErrors?.password
@@ -128,7 +155,10 @@ const Signup: React.FC = (): JSX.Element => {
             <input
               name="password2"
               value={passwordTwo}
-              onChange={(e) => setPasswordTwo(e.currentTarget.value)}
+              onChange={(e) => {
+                if (beErrors?.passwordTwo) delete beErrors.passwordTwo;
+                setPasswordTwo(e.currentTarget.value);
+              }}
               placeholder="Confirm Password"
               style={{
                 outline: beErrors?.passwordTwo
@@ -137,11 +167,20 @@ const Signup: React.FC = (): JSX.Element => {
               }}
             />
           </div>
+          {(beErrors?.password || beErrors?.passwordTwo) && (
+            <div className={styles.rowContainer}>
+              <div className={styles.errors}>{beErrors.password}</div>
+              <div className={styles.errors}>{beErrors.passwordTwo}</div>
+            </div>
+          )}
           <div className={styles.termsAndConditions}>
             <input
               type="checkbox"
               checked={checked}
-              onChange={() => setChecked(!checked)}
+              onChange={() => {
+                if (beErrors?.checked) delete beErrors.checked;
+                setChecked(!checked);
+              }}
               style={{
                 border: beErrors?.checked
                   ? "1px solid red"
@@ -151,6 +190,11 @@ const Signup: React.FC = (): JSX.Element => {
             By signing up, you agree are agreeing to our{" "}
             <span>Terms and Conditions</span>
           </div>
+          {beErrors?.checked && (
+            <span className={styles.errors} id={styles.termsError}>
+              {beErrors.checked}
+            </span>
+          )}
           <button>Create Account</button>
         </form>
         <p onClick={() => navigate("/login", { replace: true })}>

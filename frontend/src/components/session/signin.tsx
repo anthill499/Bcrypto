@@ -50,7 +50,10 @@ const Signin: React.FC = (): JSX.Element => {
           <input
             name="Username"
             value={username}
-            onChange={(e) => setUsername(e.currentTarget.value)}
+            onChange={(e) => {
+              if (beErrors?.username) delete beErrors.username;
+              setUsername(e.currentTarget.value);
+            }}
             placeholder="Username"
             className={styles.authInput}
             style={{
@@ -59,10 +62,16 @@ const Signin: React.FC = (): JSX.Element => {
                 : "0.5px solid #dcdee2",
             }}
           />
+          {beErrors?.username && (
+            <span className={styles.errors}>{beErrors?.username}</span>
+          )}
           <input
             name="password"
             value={password}
-            onChange={(e) => setPassword(e.currentTarget.value)}
+            onChange={(e) => {
+              if (beErrors?.password) delete beErrors.password;
+              setPassword(e.currentTarget.value);
+            }}
             placeholder="Password"
             className={styles.authInput}
             style={{
@@ -71,6 +80,9 @@ const Signin: React.FC = (): JSX.Element => {
                 : "0.5px solid #dcdee2",
             }}
           />
+          {beErrors?.password && (
+            <span className={styles.errors}>{beErrors?.password}</span>
+          )}
           <button>Sign In</button>
         </form>
         <p onClick={() => navigate("/register", { replace: true })}>

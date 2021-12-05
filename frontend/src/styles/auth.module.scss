@@ -64,6 +64,7 @@ $linkBlue: #1919ff;
       display: inherit;
       justify-content: center;
       align-items: center;
+      margin-top: 5%;
       input {
         margin: 5px;
       }
@@ -100,6 +101,18 @@ $linkBlue: #1919ff;
   }
 }
 
+.errors {
+  font-size: 1.3rem;
+  color: red;
+  text-align: left;
+  width: 48%;
+}
+
+#termsError {
+  width: 100%;
+  text-align: center;
+  margin: 5px;
+}
 .subLabel {
   font-size: 1.6rem;
   text-align: center;
