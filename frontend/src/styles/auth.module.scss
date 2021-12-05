@@ -48,7 +48,8 @@ $linkBlue: #1919ff;
     input {
       margin: 10px 0px;
       padding-left: 8px;
-      border: 0.5px solid #dcdee2;
+      // border: 0.5px solid #dcdee2;
+      border: none;
       padding: 3% 0px 3% 10px;
       border-radius: 3px;
       font-size: 1.4rem;
@@ -69,6 +70,7 @@ $linkBlue: #1919ff;
       span {
         color: $linkBlue;
         margin-left: 2px;
+        cursor: pointer;
       }
     }
   }
@@ -90,7 +92,7 @@ $linkBlue: #1919ff;
     ul {
       display: inherit;
       list-style: none;
-      gap: 10px;
+      gap: 16px;
     }
     div {
       cursor: pointer;

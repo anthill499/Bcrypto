@@ -10,17 +10,17 @@ const Signup: React.FC = (): JSX.Element => {
   const [password, setPassword] = useState<string>("");
   const [passwordTwo, setPasswordTwo] = useState<string>("");
   const [checked, setChecked] = useState<boolean>(false);
+  const [beErrors, setBeErrors] = useState<backendErrors>({});
   const navigate = useNavigate();
-  const [beErrors, setBeErrors] = useState<backendErrors | null>(null);
 
   interface backendErrors {
-    username: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-    passwordTwo: string;
-    checked: string;
+    username?: string;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    password?: string;
+    passwordTwo?: string;
+    checked?: string;
   }
   interface SignupData {
     username: string;
@@ -45,7 +45,7 @@ const Signup: React.FC = (): JSX.Element => {
     };
     try {
       const response = await fetch("/api/session/signup", {
-        method: "post",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
@@ -53,7 +53,11 @@ const Signup: React.FC = (): JSX.Element => {
         body: JSON.stringify(obj),
       });
       const parse = await response.json();
-    } catch (err) {}
+      setBeErrors(parse.err);
+      console.log(beErrors);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -68,12 +72,22 @@ const Signup: React.FC = (): JSX.Element => {
               value={firstName}
               onChange={(e) => setFirstName(e.currentTarget.value)}
               placeholder="First Name"
+              style={{
+                outline: beErrors.firstName
+                  ? "1px solid red"
+                  : "0.5px solid #dcdee2",
+              }}
             />
             <input
               name="lastname"
               value={lastName}
               onChange={(e) => setLastName(e.currentTarget.value)}
               placeholder="Last Name"
+              style={{
+                outline: beErrors.lastName
+                  ? "1px solid red"
+                  : "0.5px solid #dcdee2",
+              }}
             />
           </div>
           <input
@@ -81,12 +95,20 @@ const Signup: React.FC = (): JSX.Element => {
             value={username}
             onChange={(e) => setUsername(e.currentTarget.value)}
             placeholder="Username"
+            style={{
+              outline: beErrors.username
+                ? "1px solid red"
+                : "0.5px solid #dcdee2",
+            }}
           />
           <input
             name="email"
             value={email}
             onChange={(e) => setEmail(e.currentTarget.value)}
             placeholder="Email"
+            style={{
+              outline: beErrors.email ? "1px solid red" : "0.5px solid #dcdee2",
+            }}
           />
           <div className={styles.rowContainer}>
             <input
@@ -94,12 +116,22 @@ const Signup: React.FC = (): JSX.Element => {
               value={password}
               onChange={(e) => setPassword(e.currentTarget.value)}
               placeholder="Password"
+              style={{
+                outline: beErrors.password
+                  ? "1px solid red"
+                  : "0.5px solid #dcdee2",
+              }}
             />
             <input
               name="password2"
               value={passwordTwo}
               onChange={(e) => setPasswordTwo(e.currentTarget.value)}
               placeholder="Confirm Password"
+              style={{
+                outline: beErrors.passwordTwo
+                  ? "1px solid red"
+                  : "0.5px solid #dcdee2",
+              }}
             />
           </div>
           <div className={styles.termsAndConditions}>
@@ -107,6 +139,11 @@ const Signup: React.FC = (): JSX.Element => {
               type="checkbox"
               checked={checked}
               onChange={() => setChecked(!checked)}
+              style={{
+                border: beErrors.checked
+                  ? "1px solid red"
+                  : "0.5px solid #dcdee2",
+              }}
             />
             By signing up, you agree are agreeing to our{" "}
             <span>Terms and Conditions</span>
