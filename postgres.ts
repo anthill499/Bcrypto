@@ -10,17 +10,17 @@ interface Config {
   port: string;
   database: string;
 }
-console.log(process.env);
+
 const devConfig: Config = {
-  password: process.env.ANTHONY_PG_PASSWORD,
-  user: process.env.ANTHONY_USER,
-  host: process.env.ANTHONY_HOST,
-  port: process.env.ANTHONY_PORT,
-  database: process.env.ANTHONY_DB,
+  password: process.env.ANTHONY_PG_PASSWORD || "1235",
+  user: process.env.ANTHONY_USER || "postgres",
+  host: process.env.ANTHONY_HOST || "localhost",
+  port: process.env.ANTHONY_PORT || "5432",
+  database: process.env.ANTHONY_DB || "bcrypto",
 };
 
 const pool = new Pool(devConfig);
-pool.connect((err) => {
+pool.connect((err: Error): void => {
   if (err) {
     console.error("connection error", err.stack);
   } else {

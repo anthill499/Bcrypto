@@ -2,6 +2,7 @@ import * as express from "express";
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { validations } = require("../../middleware/authMiddleware");
+const pool = require("../../postgres");
 
 router.post(
   "/signup",
