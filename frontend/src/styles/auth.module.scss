@@ -19,6 +19,7 @@
     font-size: 3rem;
     text-align: center;
     cursor: pointer;
+    letter-spacing: 1px;
   }
   form {
     display: flex;
@@ -85,36 +86,36 @@
 }
 
 h3:hover {
-  animation: earthquake 1s linear infinite;
+  animation: earthquake 1s linear;
   transition: 0.4s ease-in-out;
 }
 
 @keyframes earthquake {
   0% {
     transform: rotate(0deg);
-    letter-spacing: 0px;
+    letter-spacing: 1px;
     color: black;
   }
   25% {
-    letter-spacing: 1px;
-    transform: rotate(2deg);
+    letter-spacing: 2px;
+    transform: rotate(0.5deg);
     color: rgb(39, 39, 39);
   }
   50% {
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     transform: rotate(0deg);
     text-shadow: 1px 1px 2px 1px black;
   }
   75% {
-    letter-spacing: 1px;
-    transform: rotate(-2deg);
+    letter-spacing: 2px;
+    transform: rotate(-0.5deg);
   }
   90% {
-    letter-spacing: 0.5px;
-    transform: rotate(-1deg);
+    letter-spacing: 1.5px;
+    transform: rotate(-0.25deg);
   }
   100% {
-    letter-spacing: 0px;
+    letter-spacing: 1px;
     transform: rotate(0deg);
   }
 }
