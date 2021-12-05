@@ -3,12 +3,14 @@ import { useNavigate } from "react-router";
 import styles from "../../styles/auth.module.scss";
 
 const Signup: React.FC = (): JSX.Element => {
-  const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordTwo, setPasswordTwo] = useState("");
+  const [username, setUsername] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [passwordTwo, setPasswordTwo] = useState<string>("");
+  const [checked, setChecked] = useState<boolean>(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
@@ -63,13 +65,22 @@ const Signup: React.FC = (): JSX.Element => {
               placeholder="Confirm Password"
             />
           </div>
+          <div className={styles.termsAndConditions}>
+            <input
+              type="checkbox"
+              checked={checked}
+              onChange={() => setChecked(!checked)}
+            />
+            By signing up, you agree are agreeing to our{" "}
+            <span>Terms and Conditions</span>
+          </div>
           <button>Create Account</button>
         </form>
         <p onClick={() => navigate("/login", { replace: true })}>
           Already have an account?
         </p>
         <div className={styles.infoContainer}>
-          <div>Terms and Conditions</div>
+          <div>Privacy Policy</div>
           <ul>
             <li>Contact</li>
             <li>Support</li>

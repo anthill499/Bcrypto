@@ -1,3 +1,6 @@
+$grey: grey;
+$linkBlue: #1919ff;
+
 .authDiv {
   height: 100vh;
   width: 100vw;
@@ -53,10 +56,25 @@
         font-size: 1.4rem;
       }
     }
+    .termsAndConditions {
+      font-size: 1.2rem;
+      color: $grey;
+      text-align: center;
+      display: inherit;
+      justify-content: center;
+      align-items: center;
+      input {
+        margin: 5px;
+      }
+      span {
+        color: $linkBlue;
+        margin-left: 2px;
+      }
+    }
   }
   p {
     font-size: 1.4rem;
-    color: rgb(25, 25, 255);
+    color: $linkBlue;
     text-align: center;
     cursor: pointer;
     font-weight: 500;
@@ -68,7 +86,7 @@
     font-size: 1.2rem;
     align-items: center;
     margin-top: 5%;
-    color: grey;
+    color: $grey;
     ul {
       display: inherit;
       list-style: none;

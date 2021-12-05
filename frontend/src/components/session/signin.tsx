@@ -33,7 +33,7 @@ const Signin: React.FC = (): JSX.Element => {
           New to Bcrypto?
         </p>
         <div className={styles.infoContainer}>
-          <div>Terms and Conditions</div>
+          <div>Privacy Policy</div>
           <ul>
             <li>Contact</li>
             <li>Forgot Password?</li>
