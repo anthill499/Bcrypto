@@ -7,7 +7,7 @@ const pool = require("../../postgres");
 router.post(
   "/signup",
   validations,
-  async (req: express.Request, res: express.Response): void => {
+  async (req: express.Request, res: express.Response): Promise<void> => {
     try {
       const response = await req.body;
       const resp = await response.json();

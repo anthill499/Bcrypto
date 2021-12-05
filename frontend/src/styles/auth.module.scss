@@ -105,7 +105,8 @@ $linkBlue: #1919ff;
   text-align: center;
 }
 
-h3:hover {
+h3:hover,
+.bigP:hover {
   animation: earthquake 1s linear;
   transition: 0.4s ease-in-out;
 }
