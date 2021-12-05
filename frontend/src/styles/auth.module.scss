@@ -118,8 +118,7 @@ $linkBlue: #1919ff;
   text-align: center;
 }
 
-h3:hover,
-.bigP:hover {
+.parentTitle:hover {
   animation: earthquake 1s linear;
   transition: 0.4s ease-in-out;
 }
@@ -128,6 +127,11 @@ h3:hover,
   0% {
     transform: rotate(0deg);
     letter-spacing: 1px;
+    color: black;
+  }
+  10% {
+    transform: rotate(0.25deg);
+    letter-spacing: 1.5px;
     color: black;
   }
   25% {
@@ -139,6 +143,7 @@ h3:hover,
     letter-spacing: 3px;
     transform: rotate(0deg);
     text-shadow: 1px 1px 2px 1px black;
+    font-weight: 600;
   }
   75% {
     letter-spacing: 2px;

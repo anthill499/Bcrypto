@@ -62,8 +62,11 @@ const Signup: React.FC = (): JSX.Element => {
   return (
     <div className={styles.authDiv}>
       <div className={styles.authContainer}>
-        <h3 onClick={() => navigate("/", { replace: false })}>
-          Bcry<span className={styles.bigP}>p</span>to
+        <h3
+          onClick={() => navigate("/", { replace: false })}
+          className={styles.parentTitle}
+        >
+          <span>B</span>crypto
         </h3>
         <span className={styles.subLabel}>Create Account</span>
         <form onSubmit={(e) => handleSubmit(e)}>
