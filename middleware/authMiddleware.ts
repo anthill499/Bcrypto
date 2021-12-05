@@ -10,6 +10,7 @@ const validations = (req: Request, res: Response, next: NextFunction) => {
     passwordTwo?: string;
     checked?: string;
   }
+
   const {
     username,
     firstName,
