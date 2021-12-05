@@ -12,7 +12,6 @@ const Signup: React.FC = (): JSX.Element => {
   const [checked, setChecked] = useState<boolean>(false);
   const [beErrors, setBeErrors] = useState<backendErrors>({});
   const navigate = useNavigate();
-
   interface backendErrors {
     username?: string;
     firstName?: string;
@@ -55,7 +54,7 @@ const Signup: React.FC = (): JSX.Element => {
       const parse = await response.json();
       setBeErrors(parse.err);
     } catch (err) {
-      console.log(err);
+      console.log({ err });
     }
   };
 

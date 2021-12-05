@@ -35,7 +35,6 @@ const Signin: React.FC = (): JSX.Element => {
       });
       const parse = await response.json();
       setBeErrors(parse.err);
-      console.log(beErrors);
     } catch (err) {
       console.log(err);
     }
@@ -44,7 +43,10 @@ const Signin: React.FC = (): JSX.Element => {
   return (
     <div className={styles.authDiv}>
       <div className={styles.authContainer}>
-        <h3 onClick={() => navigate("/", { replace: false })} className={styles.parentTitle}>
+        <h3
+          onClick={() => navigate("/", { replace: false })}
+          className={styles.parentTitle}
+        >
           <span>B</span>crypto
         </h3>
         <span className={styles.subLabel}>Sign in</span>

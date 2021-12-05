@@ -63,4 +63,7 @@ const validations = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
-export { validations };
+const verifyToken = (req: Request, res: Response, next: NextFunction) => {
+
+}
+export { validations, verifyToken };

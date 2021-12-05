@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { validations } = require("../../middleware/authMiddleware");
 const pool = require("../../postgres");
+const jwtGenerator = require("../../util/jwtAuthorizer");
 
 interface authErrors {
   username?: string;
@@ -13,25 +14,18 @@ router.post(
   "/signup",
   validations,
   async (req: express.Request, res: express.Response): Promise<void> => {
+    console.log("hit");
     try {
       const errors: authErrors = {};
       const response = await req.body;
       const resp = await response.json();
       // postgresql logic
-      const {
-        username,
-        firstName,
-        lastName,
-        email,
-        password,
-        passwordTwo,
-        checked,
-      } = resp;
+      const { username, firstName, lastName, email, password } = resp;
       const newQuery = await pool.query(
         "SELECT * from users WHERE username = $1 OR email = $2",
         [username, email]
       );
-
+      console.log(newQuery);
       // if user is found in the database
       const arr = await newQuery.rows;
       if (arr.length !== 0) {
@@ -47,6 +41,7 @@ router.post(
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
 
+      // Creating a new user
       const newUser = await pool.query(
         "INSERT INTO users (username, first_name, last_name, email, password) VALUES ($1, $2, $3, $4, $5) RETURNING *",
         [username, firstName, lastName, email, hashedPassword]
@@ -54,9 +49,17 @@ router.post(
 
       const currUser = await newUser.rows[0];
       // Session Cookies, Caching, Authenticator
-      res.json({});
+      const token = jwtGenerator(currUser.user_id); // string
+      const payload = await Object.assign(
+        { token: `Bearer ${token}` },
+        currUser,
+        {}
+      );
+      delete payload["user_id"];
+      delete payload["password"];
+      res.status(200).json(payload);
     } catch (err) {
-      res.status(401).json({ error: err });
+      res.status(401).json({ error: "Failed to register user" });
     }
   }
 );
