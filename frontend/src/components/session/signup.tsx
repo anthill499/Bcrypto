@@ -20,7 +20,7 @@ const Signup: React.FC = (): JSX.Element => {
   return (
     <div className={styles.authDiv}>
       <div className={styles.authContainer}>
-        <h3>Bcrypto</h3>
+        <h3 onClick={() => navigate("/", { replace: false })}>Bcrypto</h3>
         <span className={styles.subLabel}>Create Account</span>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className={styles.rowContainer}>

@@ -18,6 +18,7 @@
   h3 {
     font-size: 3rem;
     text-align: center;
+    cursor: pointer;
   }
   form {
     display: flex;
@@ -81,4 +82,39 @@
 .subLabel {
   font-size: 1.6rem;
   text-align: center;
+}
+
+h3:hover {
+  animation: earthquake 1s linear infinite;
+  transition: 0.4s ease-in-out;
+}
+
+@keyframes earthquake {
+  0% {
+    transform: rotate(0deg);
+    letter-spacing: 0px;
+    color: black;
+  }
+  25% {
+    letter-spacing: 1px;
+    transform: rotate(2deg);
+    color: rgb(39, 39, 39);
+  }
+  50% {
+    letter-spacing: 2px;
+    transform: rotate(0deg);
+    text-shadow: 1px 1px 2px 1px black;
+  }
+  75% {
+    letter-spacing: 1px;
+    transform: rotate(-2deg);
+  }
+  90% {
+    letter-spacing: 0.5px;
+    transform: rotate(-1deg);
+  }
+  100% {
+    letter-spacing: 0px;
+    transform: rotate(0deg);
+  }
 }

@@ -10,7 +10,7 @@ const Signin: React.FC = (): JSX.Element => {
   return (
     <div className={styles.authDiv}>
       <div className={styles.authContainer}>
-        <h3>Bcrypto</h3>
+        <h3 onClick={() => navigate("/", { replace: false })}>Bcrypto</h3>
         <span className={styles.subLabel}>Sign in</span>
         <form>
           <input
