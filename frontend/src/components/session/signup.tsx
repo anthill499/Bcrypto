@@ -10,9 +10,18 @@ const Signup: React.FC = (): JSX.Element => {
   const [password, setPassword] = useState<string>("");
   const [passwordTwo, setPasswordTwo] = useState<string>("");
   const [checked, setChecked] = useState<boolean>(false);
-
   const navigate = useNavigate();
+  const [beErrors, setBeErrors] = useState<backendErrors | null>(null);
 
+  interface backendErrors {
+    username: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    passwordTwo: string;
+    checked: string;
+  }
   interface SignupData {
     username: string;
     firstName: string;
@@ -35,15 +44,15 @@ const Signup: React.FC = (): JSX.Element => {
       checked,
     };
     try {
-      // const response = await fetch("/api/session/signup", {
-      //   method: "post",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     Accept: "application/json",
-      //   },
-      //   body: JSON.stringify(obj),
-      // });
-      // const parse = await response.json();
+      const response = await fetch("/api/session/signup", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(obj),
+      });
+      const parse = await response.json();
     } catch (err) {}
   };
 

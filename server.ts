@@ -1,18 +1,17 @@
-const express = require("express");
+import * as express from "express";
 require("dotenv").config();
-const app = express();
+const app = express.default();
 const cors = require("cors");
 // const path = require("path");
-
 const port = 5000;
 
 app.use(express.json());
 app.use(cors());
 
-app.use("/api/session", require("./routes/api/session"));
+app.use("api/session", require("./routes/api/session"));
 
 // test route
-app.get("/test", (req, res) => {
+app.get("/test", (req: express.Request, res: express.Response) => {
   res.json({ message: "It's the test route" });
 });
 
