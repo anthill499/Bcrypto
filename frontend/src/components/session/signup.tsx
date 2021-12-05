@@ -11,12 +11,18 @@ const Signup: React.FC = (): JSX.Element => {
   const [passwordTwo, setPasswordTwo] = useState("");
   const navigate = useNavigate();
 
+  const handleSubmit = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    try {
+    } catch (err) {}
+  };
+
   return (
     <div className={styles.authDiv}>
       <div className={styles.authContainer}>
         <h3>Bcrypto</h3>
         <span className={styles.subLabel}>Create Account</span>
-        <form>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <div className={styles.rowContainer}>
             <input
               name="firstname"
@@ -62,6 +68,13 @@ const Signup: React.FC = (): JSX.Element => {
         <p onClick={() => navigate("/login", { replace: true })}>
           Already have an account?
         </p>
+        <div className={styles.infoContainer}>
+          <div>Terms and Conditions</div>
+          <ul>
+            <li>Contact</li>
+            <li>Support</li>
+          </ul>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import Navbar from "../navbar/navbar";
 import styles from "../../styles/home.module.scss";
+
 const Home: React.FC = (): JSX.Element => {
   return (
     <>

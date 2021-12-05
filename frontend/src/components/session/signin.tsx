@@ -32,6 +32,13 @@ const Signin: React.FC = (): JSX.Element => {
         <p onClick={() => navigate("/register", { replace: true })}>
           New to Bcrypto?
         </p>
+        <div className={styles.infoContainer}>
+          <div>Terms and Conditions</div>
+          <ul>
+            <li>Contact</li>
+            <li>Forgot Password?</li>
+          </ul>
+        </div>
       </div>
     </div>
   );
