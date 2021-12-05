@@ -13,9 +13,37 @@ const Signup: React.FC = (): JSX.Element => {
 
   const navigate = useNavigate();
 
+  interface SignupData {
+    username: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    passwordTwo: string;
+    checked: boolean;
+  }
+
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+    const obj: SignupData = {
+      username,
+      firstName,
+      lastName,
+      email,
+      password,
+      passwordTwo,
+      checked,
+    };
     try {
+      // const response = await fetch("/api/session/signup", {
+      //   method: "post",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     Accept: "application/json",
+      //   },
+      //   body: JSON.stringify(obj),
+      // });
+      // const parse = await response.json();
     } catch (err) {}
   };
 
