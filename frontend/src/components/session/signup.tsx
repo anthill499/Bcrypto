@@ -54,7 +54,6 @@ const Signup: React.FC = (): JSX.Element => {
       });
       const parse = await response.json();
       setBeErrors(parse.err);
-      console.log(beErrors);
     } catch (err) {
       console.log(err);
     }
@@ -73,7 +72,7 @@ const Signup: React.FC = (): JSX.Element => {
               onChange={(e) => setFirstName(e.currentTarget.value)}
               placeholder="First Name"
               style={{
-                outline: beErrors.firstName
+                outline: beErrors?.firstName
                   ? "1px solid red"
                   : "0.5px solid #dcdee2",
               }}
@@ -84,7 +83,7 @@ const Signup: React.FC = (): JSX.Element => {
               onChange={(e) => setLastName(e.currentTarget.value)}
               placeholder="Last Name"
               style={{
-                outline: beErrors.lastName
+                outline: beErrors?.lastName
                   ? "1px solid red"
                   : "0.5px solid #dcdee2",
               }}
@@ -96,7 +95,7 @@ const Signup: React.FC = (): JSX.Element => {
             onChange={(e) => setUsername(e.currentTarget.value)}
             placeholder="Username"
             style={{
-              outline: beErrors.username
+              outline: beErrors?.username
                 ? "1px solid red"
                 : "0.5px solid #dcdee2",
             }}
@@ -107,7 +106,9 @@ const Signup: React.FC = (): JSX.Element => {
             onChange={(e) => setEmail(e.currentTarget.value)}
             placeholder="Email"
             style={{
-              outline: beErrors.email ? "1px solid red" : "0.5px solid #dcdee2",
+              outline: beErrors?.email
+                ? "1px solid red"
+                : "0.5px solid #dcdee2",
             }}
           />
           <div className={styles.rowContainer}>
@@ -117,7 +118,7 @@ const Signup: React.FC = (): JSX.Element => {
               onChange={(e) => setPassword(e.currentTarget.value)}
               placeholder="Password"
               style={{
-                outline: beErrors.password
+                outline: beErrors?.password
                   ? "1px solid red"
                   : "0.5px solid #dcdee2",
               }}
@@ -128,7 +129,7 @@ const Signup: React.FC = (): JSX.Element => {
               onChange={(e) => setPasswordTwo(e.currentTarget.value)}
               placeholder="Confirm Password"
               style={{
-                outline: beErrors.passwordTwo
+                outline: beErrors?.passwordTwo
                   ? "1px solid red"
                   : "0.5px solid #dcdee2",
               }}
@@ -140,7 +141,7 @@ const Signup: React.FC = (): JSX.Element => {
               checked={checked}
               onChange={() => setChecked(!checked)}
               style={{
-                border: beErrors.checked
+                border: beErrors?.checked
                   ? "1px solid red"
                   : "0.5px solid #dcdee2",
               }}

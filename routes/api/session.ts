@@ -7,12 +7,13 @@ const pool = require("../../postgres");
 router.post(
   "/signup",
   validations,
-  async (req: express.Request, res: express.Response) => {
+  async (req: express.Request, res: express.Response): void => {
     try {
       const response = await req.body;
       const resp = await response.json();
-      console.log(resp);
       // postgresql logic
+      console.log(resp);
+
       res.json(resp);
     } catch (err) {
       res.status(401).json({ error: err });
