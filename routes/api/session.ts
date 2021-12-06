@@ -14,7 +14,6 @@ router.post(
   "/signup",
   validations,
   async (req: express.Request, res: express.Response): Promise<void> => {
-    console.log("hit");
     try {
       const errors: authErrors = {};
       const response = await req.body;
@@ -25,11 +24,9 @@ router.post(
         "SELECT * from users WHERE username = $1 OR email = $2",
         [username, email]
       );
-      console.log(newQuery);
       // if user is found in the database
-      const arr = await newQuery.rows;
-      if (arr.length !== 0) {
-        arr.forEach((user: any) => {
+      if (newQuery.rows.length !== 0) {
+        newQuery.rows.forEach((user: any) => {
           if (user.username === username)
             errors["username"] = "Username already taken";
           if (user.email === email) errors["email"] = "Email already taken";
