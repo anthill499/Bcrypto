@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 const { validations } = require("../../middleware/authMiddleware");
 const pool = require("../../postgres");
 const jwtGenerator = require("../../util/jwtAuthorizer");
-
 interface authErrors {
   username?: string;
   email?: string;
@@ -17,9 +16,9 @@ router.post(
     try {
       const errors: authErrors = {};
       const response = await req.body;
-      const resp = await response.json();
       // postgresql logic
-      const { username, firstName, lastName, email, password } = resp;
+      const { username, firstName, lastName, email, password } = await response;
+      console.log(response);
       const newQuery = await pool.query(
         "SELECT * from users WHERE username = $1 OR email = $2",
         [username, email]
@@ -56,7 +55,7 @@ router.post(
       delete payload["password"];
       res.status(200).json(payload);
     } catch (err) {
-      res.status(401).json({ error: "Failed to register user" });
+      res.status(401).json({ err: "Failed to register user" });
     }
   }
 );

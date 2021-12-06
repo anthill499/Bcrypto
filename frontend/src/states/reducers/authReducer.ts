@@ -42,7 +42,8 @@ const authReducer = (
         firstName: action.firstName,
         lastName: action.lastName,
         id: action.id,
-      };
+        token: action.token,
+      } as authState;
     case LOGOUT:
       return initialState;
     default:

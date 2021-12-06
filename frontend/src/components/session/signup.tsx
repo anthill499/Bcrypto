@@ -52,9 +52,14 @@ const Signup: React.FC = (): JSX.Element => {
         body: JSON.stringify(obj),
       });
       const parse = await response.json();
-      setBeErrors(parse.err);
+      console.log(`Error is ${JSON.stringify(parse)}`, response);
+      if (response.ok) {
+        // login and authorize session token
+      } else {
+        setBeErrors(parse.err);
+      }
     } catch (err) {
-      console.log({ err });
+      console.log({ err: JSON.stringify(err) });
     }
   };
 
