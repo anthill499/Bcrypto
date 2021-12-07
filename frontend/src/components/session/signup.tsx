@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import styles from "../../styles/auth.module.scss";
-
+import { Authentication } from "../../states/contexts";
 const Signup: React.FC = (): JSX.Element => {
   const [username, setUsername] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
@@ -12,6 +12,8 @@ const Signup: React.FC = (): JSX.Element => {
   const [checked, setChecked] = useState<boolean>(false);
   const [beErrors, setBeErrors] = useState<backendErrors>({});
   const navigate = useNavigate();
+
+  const AuthGlobal = useContext(Authentication);
   interface backendErrors {
     username?: string;
     firstName?: string;
@@ -21,7 +23,7 @@ const Signup: React.FC = (): JSX.Element => {
     passwordTwo?: string;
     checked?: string;
   }
-  interface SignupData {
+  interface ForAPI {
     username: string;
     firstName: string;
     lastName: string;
@@ -31,9 +33,17 @@ const Signup: React.FC = (): JSX.Element => {
     checked: boolean;
   }
 
+  interface FromAPI {
+    firstName: string;
+    lastName: string;
+    token: string;
+    username: string;
+    email: string;
+  }
+
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const obj: SignupData = {
+    const obj: ForAPI = {
       username,
       firstName,
       lastName,
@@ -52,9 +62,20 @@ const Signup: React.FC = (): JSX.Element => {
         body: JSON.stringify(obj),
       });
       const parse = await response.json();
-      console.log(`Error is ${JSON.stringify(parse)}`, response);
       if (response.ok) {
-        // login and authorize session token
+        console.log(parse);
+        const { email, first_name, last_name, token, username } = parse;
+        const loginData: FromAPI = {
+          firstName: first_name,
+          lastName: last_name,
+          token,
+          username,
+          email,
+        };
+
+        // dispatch login
+
+        // set localStorage
       } else {
         setBeErrors(parse.err);
       }

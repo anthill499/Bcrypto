@@ -20,7 +20,7 @@ interface Action {
   token?: string;
 }
 
-const initialState: authState = {
+const initAuth: authState = {
   loggedIn: false,
   username: "",
   email: "",
@@ -30,7 +30,7 @@ const initialState: authState = {
 };
 
 const authReducer = (
-  state: authState = initialState,
+  state: authState = initAuth,
   action: Action
 ): authState => {
   switch (action.type) {
@@ -45,10 +45,10 @@ const authReducer = (
         token: action.token,
       } as authState;
     case LOGOUT:
-      return initialState;
+      return initAuth;
     default:
       return state;
   }
 };
 
-export default authReducer;
+export { authReducer, initAuth };

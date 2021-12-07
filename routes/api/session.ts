@@ -13,6 +13,7 @@ router.post(
   "/signup",
   validations,
   async (req: express.Request, res: express.Response): Promise<void> => {
+    console.log("hit 1");
     try {
       const errors: authErrors = {};
       const response = await req.body;
@@ -23,6 +24,8 @@ router.post(
         "SELECT * from users WHERE username = $1 OR email = $2",
         [username, email]
       );
+      console.log("hit 2");
+
       // if user is found in the database
       if (newQuery.rows.length !== 0) {
         newQuery.rows.forEach((user: any) => {

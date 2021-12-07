@@ -24,7 +24,7 @@ test("Example pass case", () => {
 const thisNull = null;
 const thisUndefined = undefined;
 
-function returnOutput(param: any) {
+function returnOutput(param) {
   return param;
 }
 
