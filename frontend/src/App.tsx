@@ -9,8 +9,9 @@ import { authReducer, initAuth } from "./states/reducers/authReducer";
 
 const App: React.FC = (): JSX.Element => {
   const [authState, dispatch] = useReducer(authReducer, initAuth);
+  console.log(authState);
   return (
-    <Authentication.Provider value={{ ...authState, dispatch }}>
+    <Authentication.Provider value={{...authState, dispatch}}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -19,7 +20,7 @@ const App: React.FC = (): JSX.Element => {
           <Route path="/home" element={<Home />} />
         </Routes>
       </BrowserRouter>
-    </Authentication.Provider>
+    // </Authentication.Provider>
   );
 };
 

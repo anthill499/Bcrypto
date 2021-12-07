@@ -37,6 +37,7 @@ const Signup: React.FC = (): JSX.Element => {
   }
 
   interface FromAPI {
+    id: string;
     firstName: string;
     lastName: string;
     token: string;
@@ -66,9 +67,9 @@ const Signup: React.FC = (): JSX.Element => {
       });
       const parse = await response.json();
       if (response.ok) {
-        console.log(parse);
-        const { email, first_name, last_name, token, username } = parse;
+        const { email, first_name, last_name, token, username, user_id } = parse;
         const loginData: FromAPI = {
+          id: user_id,
           firstName: first_name,
           lastName: last_name,
           token,
@@ -77,7 +78,7 @@ const Signup: React.FC = (): JSX.Element => {
         };
 
         // dispatch login
-        
+        // authGlobal.dispatch(login(loginData))
         // set localStorage
       } else {
         setBeErrors(parse.err);
