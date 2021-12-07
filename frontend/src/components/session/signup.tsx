@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import styles from "../../styles/auth.module.scss";
 import { Authentication } from "../../states/contexts";
+import { login } from "../../states/actions/auth";
+
 const Signup: React.FC = (): JSX.Element => {
   const [username, setUsername] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
@@ -11,9 +13,10 @@ const Signup: React.FC = (): JSX.Element => {
   const [passwordTwo, setPasswordTwo] = useState<string>("");
   const [checked, setChecked] = useState<boolean>(false);
   const [beErrors, setBeErrors] = useState<backendErrors>({});
+
   const navigate = useNavigate();
 
-  const AuthGlobal = useContext(Authentication);
+  const authGlobal = useContext(Authentication);
   interface backendErrors {
     username?: string;
     firstName?: string;
@@ -74,7 +77,7 @@ const Signup: React.FC = (): JSX.Element => {
         };
 
         // dispatch login
-
+        
         // set localStorage
       } else {
         setBeErrors(parse.err);
