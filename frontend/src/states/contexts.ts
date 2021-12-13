@@ -1,16 +1,7 @@
-import { initAuth } from "./reducers/authReducer";
-import React from "react";
+import { authState, initAuth } from "./reducers/authReducer";
+import React, { Dispatch } from "react";
 
-interface AuthContext {
-  id: string;
-  firstName: string;
-  lastName: string;
-  token?: string;
-  username: string;
-  email: string;
-  dispatch: Dispatch<Action>;
-}
- 
-const Authentication = React.createContext();
+
+const Authentication = React.createContext([initAuth, ]);
 
 export { Authentication };

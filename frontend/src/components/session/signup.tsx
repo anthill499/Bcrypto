@@ -13,10 +13,9 @@ const Signup: React.FC = (): JSX.Element => {
   const [passwordTwo, setPasswordTwo] = useState<string>("");
   const [checked, setChecked] = useState<boolean>(false);
   const [beErrors, setBeErrors] = useState<backendErrors>({});
-
   const navigate = useNavigate();
-
   const authGlobal = useContext(Authentication);
+  
   interface backendErrors {
     username?: string;
     firstName?: string;
@@ -35,7 +34,6 @@ const Signup: React.FC = (): JSX.Element => {
     passwordTwo: string;
     checked: boolean;
   }
-
   interface FromAPI {
     id: string;
     firstName: string;
@@ -77,6 +75,7 @@ const Signup: React.FC = (): JSX.Element => {
           email,
         };
 
+        console.log(authGlobal)
         // dispatch login
         // authGlobal.dispatch(login(loginData))
         // set localStorage

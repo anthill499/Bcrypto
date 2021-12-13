@@ -1,6 +1,6 @@
 import { LOGIN, LOGOUT } from "../actions/auth";
 
-interface authState {
+export interface authState {
   loggedIn: boolean;
   username: string;
   email: string;
@@ -16,17 +16,17 @@ interface Action {
   firstName?: string;
   lastName?: string;
   id?: string;
-  type?: string;
+  type: string;
   token?: string;
 }
 
 const initAuth: authState = {
   loggedIn: false,
   username: "",
+  id: "",
   email: "",
   firstName: "",
   lastName: "",
-  id: "",
 };
 
 const authReducer = (
