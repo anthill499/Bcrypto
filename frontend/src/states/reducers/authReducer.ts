@@ -10,7 +10,7 @@ export interface authState {
   token?: string;
 }
 
-interface Action {
+export interface Action {
   username?: string;
   email?: string;
   firstName?: string;

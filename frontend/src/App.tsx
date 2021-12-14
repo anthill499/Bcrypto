@@ -1,17 +1,14 @@
-import { useReducer } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./components/landing/landing";
 import Signup from "./components/session/signup";
 import Signin from "./components/session/signin";
 import Home from "./components/homepage/home";
-import { Authentication } from "./states/contexts";
-import { authReducer, initAuth } from "./states/reducers/authReducer";
+import AuthProvider from "./states/contexts/authContext";
 
 const App: React.FC = (): JSX.Element => {
-  const [authState, dispatch] = useReducer(authReducer, initAuth);
-
   return (
-    <Authentication.Provider value={[authState, dispatch]}>
+    <AuthProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -20,7 +17,7 @@ const App: React.FC = (): JSX.Element => {
           <Route path="/home" element={<Home />} />
         </Routes>
       </BrowserRouter>
-    </Authentication.Provider>
+    </AuthProvider>
   );
 };
 

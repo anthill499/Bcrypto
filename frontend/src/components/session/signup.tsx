@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import styles from "../../styles/auth.module.scss";
-import { Authentication } from "../../states/contexts";
 import { login } from "../../states/actions/auth";
 
 const Signup: React.FC = (): JSX.Element => {
@@ -14,8 +13,7 @@ const Signup: React.FC = (): JSX.Element => {
   const [checked, setChecked] = useState<boolean>(false);
   const [beErrors, setBeErrors] = useState<backendErrors>({});
   const navigate = useNavigate();
-  const authGlobal = useContext(Authentication);
-  
+
   interface backendErrors {
     username?: string;
     firstName?: string;
@@ -65,7 +63,8 @@ const Signup: React.FC = (): JSX.Element => {
       });
       const parse = await response.json();
       if (response.ok) {
-        const { email, first_name, last_name, token, username, user_id } = parse;
+        const { email, first_name, last_name, token, username, user_id } =
+          parse;
         const loginData: FromAPI = {
           id: user_id,
           firstName: first_name,
@@ -75,7 +74,6 @@ const Signup: React.FC = (): JSX.Element => {
           email,
         };
 
-        console.log(authGlobal)
         // dispatch login
         // authGlobal.dispatch(login(loginData))
         // set localStorage
