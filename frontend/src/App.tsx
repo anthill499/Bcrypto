@@ -4,7 +4,7 @@ import Landing from "./components/landing/landing";
 import Signup from "./components/session/signup";
 import Signin from "./components/session/signin";
 import Home from "./components/homepage/home";
-import AuthProvider from "./states/contexts/authContext";
+import { AuthProvider } from "./states/contexts/authContext";
 
 const App: React.FC = (): JSX.Element => {
   return (

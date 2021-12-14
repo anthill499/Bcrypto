@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import styles from "../../styles/auth.module.scss";
 import { login } from "../../states/actions/auth";
-
+import { Authentication } from "../../states/contexts/authContext";
 const Signup: React.FC = (): JSX.Element => {
   const [username, setUsername] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
@@ -13,6 +13,7 @@ const Signup: React.FC = (): JSX.Element => {
   const [checked, setChecked] = useState<boolean>(false);
   const [beErrors, setBeErrors] = useState<backendErrors>({});
   const navigate = useNavigate();
+  const AuthGlobal = useContext(Authentication);
 
   interface backendErrors {
     username?: string;
@@ -75,7 +76,7 @@ const Signup: React.FC = (): JSX.Element => {
         };
 
         // dispatch login
-        // authGlobal.dispatch(login(loginData))
+        AuthGlobal.dispatch(login(loginData));
         // set localStorage
       } else {
         setBeErrors(parse.err);
@@ -95,6 +96,7 @@ const Signup: React.FC = (): JSX.Element => {
           <span>B</span>crypto
         </h3>
         <span className={styles.subLabel}>Create Account</span>
+        <div>{JSON.stringify(AuthGlobal)}</div>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className={styles.rowContainer}>
             <input
@@ -226,9 +228,11 @@ const Signup: React.FC = (): JSX.Element => {
           )}
           <button>Create Account</button>
         </form>
-        <p onClick={() => navigate("/login", { replace: true })}>
-          Already have an account?
-        </p>
+        <div>
+          <p onClick={() => navigate("/login", { replace: true })}>
+            Already have an account?
+          </p>
+        </div>
         <div className={styles.infoContainer}>
           <div>Privacy Policy</div>
           <ul>
