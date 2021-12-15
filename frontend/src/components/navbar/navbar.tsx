@@ -1,7 +1,40 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router";
 import styles from "../../styles/navbar.module.scss";
+import { Authentication } from "../../states/contexts/authContext";
+import { logout } from "../../states/actions/auth";
 const Navbar: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
+  const AuthGlobal = useContext(Authentication);
+
+  const renderButtons = () => {
+    console.log(AuthGlobal);
+    return !AuthGlobal.authState.loggedIn ? (
+      <ul id={styles.navbarAuthContainer}>
+        <button
+          id={styles.navbarLoginButton}
+          onClick={() => navigate("/login")}
+        >
+          Log In
+        </button>
+        <button
+          id={styles.navbarSignupButton}
+          onClick={() => navigate("/register")}
+        >
+          Sign Up
+        </button>
+      </ul>
+    ) : (
+      <ul id={styles.navbarAuthContainer}>
+        <button
+          id={styles.navbarLoginButton}
+          onClick={() => AuthGlobal.dispatchAuth(logout())}
+        >
+          Log Out
+        </button>
+      </ul>
+    );
+  };
   return (
     <div className={styles.navbarBackground}>
       <div className={styles.navbarContainer}>
@@ -12,20 +45,7 @@ const Navbar: React.FC = (): JSX.Element => {
           <li className={styles.navbarItem}>Contact Us</li>
           <li className={styles.navbarItem}>Our story</li>
         </ul>
-        <ul id={styles.navbarAuthContainer}>
-          <button
-            id={styles.navbarLoginButton}
-            onClick={() => navigate("/login")}
-          >
-            Log In
-          </button>
-          <button
-            id={styles.navbarSignupButton}
-            onClick={() => navigate("/register")}
-          >
-            Sign Up
-          </button>
-        </ul>
+        {renderButtons()}
       </div>
     </div>
   );

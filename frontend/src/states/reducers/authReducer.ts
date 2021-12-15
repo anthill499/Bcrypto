@@ -25,12 +25,12 @@ const localUser = JSON.parse(
 
 // empty object for typing issues
 const initAuth: authState = {
-  loggedIn: false || (localUser ? true : false),
-  username: "" || localUser.username,
-  id: "" || localUser.id,
-  email: "" || localUser.email,
-  firstName: "" || localUser.firstName,
-  lastName: "" || localUser.lastName,
+  loggedIn: Object.values(localUser).length > 0 ? true : false,
+  username: localUser.username ? localUser.username : "",
+  id: localUser.id ? localUser.id : "",
+  email: localUser.email ? localUser.email : "",
+  firstName: localUser.firstName ? localUser.firstName : "",
+  lastName: localUser.lastName ? localUser.lastName : "",
 };
 
 const authReducer = (
