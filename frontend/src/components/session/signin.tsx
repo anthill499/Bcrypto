@@ -14,6 +14,7 @@ const Signin: React.FC = (): JSX.Element => {
   interface backendErrors {
     username?: string;
     password?: string;
+    auth?: string;
   }
   interface SigninData {
     username: string;
@@ -34,37 +35,33 @@ const Signin: React.FC = (): JSX.Element => {
       username,
       password,
     };
-    try {
-      const response = await fetch("/api/session/signin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(obj),
-      });
-      const parse = await response.json();
-      if (response.ok) {
-        const { email, first_name, last_name, token, username, user_id } =
-          parse;
-        const loginData: FromSigninAPI = {
-          id: user_id,
-          firstName: first_name,
-          lastName: last_name,
-          token,
-          username,
-          email,
-        };
-        AuthGlobal.dispatchAuth(login(loginData));
-        localStorage.setItem(
-          "authorizationCredentials",
-          JSON.stringify(loginData)
-        );
-      } else {
-        setBeErrors(parse.err);
-      }
-    } catch (err) {
-      console.error(JSON.stringify(err));
+    const response = await fetch("/api/session/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(obj),
+    });
+    const parse = await response.json();
+    if (response.ok) {
+      const { email, first_name, last_name, token, username, user_id } = parse;
+      const loginData: FromSigninAPI = {
+        id: user_id,
+        firstName: first_name,
+        lastName: last_name,
+        token,
+        username,
+        email,
+      };
+      AuthGlobal.dispatchAuth(login(loginData));
+      localStorage.setItem(
+        "authorizationCredentials",
+        JSON.stringify(loginData)
+      );
+    } else {
+      console.log(parse, response);
+      setBeErrors(parse.err);
     }
   };
 
@@ -77,7 +74,14 @@ const Signin: React.FC = (): JSX.Element => {
         >
           <span>B</span>crypto
         </h3>
-        <span className={styles.subLabel}>Sign in</span>
+        <span
+          className={styles.subLabel}
+          style={{
+            color: beErrors?.auth ? "red" : "black",
+          }}
+        >
+          {beErrors?.auth ? beErrors.auth : "Sign In"}
+        </span>
         <form onSubmit={(e) => handleSubmit(e)}>
           <input
             name="Username"
@@ -89,9 +93,10 @@ const Signin: React.FC = (): JSX.Element => {
             placeholder="Username"
             className={styles.authInput}
             style={{
-              outline: beErrors?.username
-                ? "1px solid red"
-                : "0.5px solid #dcdee2",
+              outline:
+                beErrors?.username || beErrors?.auth
+                  ? "1px solid red"
+                  : "0.5px solid #dcdee2",
             }}
           />
           {beErrors?.username && (
@@ -107,9 +112,10 @@ const Signin: React.FC = (): JSX.Element => {
             placeholder="Password"
             className={styles.authInput}
             style={{
-              outline: beErrors?.password
-                ? "1px solid red"
-                : "0.5px solid #dcdee2",
+              outline:
+                beErrors?.password || beErrors?.auth
+                  ? "1px solid red"
+                  : "0.5px solid #dcdee2",
             }}
           />
           {beErrors?.password && (

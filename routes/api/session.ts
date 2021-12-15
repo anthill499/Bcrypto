@@ -7,15 +7,16 @@ const jwtGenerator = require("../../util/jwtAuthorizer");
 interface authErrors {
   username?: string;
   email?: string;
+  auth?: string;
 }
 
 router.post(
   "/signup",
   validations,
-  async (req: express.Request, res: express.Response): Promise<void> => {
+  async (req: express.Request, res: express.Response): Promise<any> => {
     try {
-      const errors: authErrors = {};
       const response = await req.body;
+      const signUpErrors: authErrors = {};
       // postgresql logic
       const { username, firstName, lastName, email, password } = await response;
       const newQuery = await pool.query(
@@ -27,10 +28,11 @@ router.post(
       if (newQuery.rows.length !== 0) {
         newQuery.rows.forEach((user: any) => {
           if (user.username === username)
-            errors["username"] = "Username already taken";
-          if (user.email === email) errors["email"] = "Email already taken";
+            signUpErrors["username"] = "Username already taken";
+          if (user.email === email)
+            signUpErrors["email"] = "Email already taken";
         });
-        res.status(422).json({ err: { ...errors } });
+        return res.status(422).json({ err: { ...signUpErrors } });
       }
       // Hashing password
       const salt = await bcrypt.genSalt(10);
@@ -51,9 +53,9 @@ router.post(
         {}
       );
       delete payload["password"];
-      res.status(200).json(payload);
+      return res.status(200).json(payload);
     } catch (err) {
-      res.status(401).json({ err: "Failed to register user" });
+      return res.status(401).json({ err: "Failed to register user" });
     }
   }
 );
@@ -61,21 +63,24 @@ router.post(
 router.post(
   "/signin",
   validations,
-  async (req: express.Request, res: express.Response): Promise<void> => {
+  async (req: express.Request, res: express.Response): Promise<any> => {
     try {
       const response = await req.body;
+      const signInErrors: authErrors = {};
       // postgresql logic
-      const { username, password } = response;
+      const { username, password } = await response;
       const user = await pool.query("SELECT * FROM users WHERE username = $1", [
         username,
       ]);
       if (user.rows.length === 0) {
-        res.status(422).json({ err: "Username not found" });
+        signInErrors.username = "Username not found";
+        return res.status(422).json({ err: signInErrors });
       }
       const foundUser = await user.rows[0];
       const isSameUser = await bcrypt.compare(password, foundUser.password);
       if (!isSameUser) {
-        res.status(401).json({ errors: "Invalid Credentials" });
+        signInErrors.auth = "Invalid Credentials";
+        return res.status(401).json({ err: signInErrors });
       }
       const token = jwtGenerator(foundUser.user_id); // string
       const payload = await Object.assign(
@@ -84,10 +89,10 @@ router.post(
         {}
       );
       delete payload["password"];
-      res.status(200).json(payload);
+      return res.status(200).json(payload);
     } catch (err) {
       console.error("backend err is", err);
-      res.status(401).json({ error: err });
+      return res.status(401).json({ err });
     }
   }
 );
