@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import styles from "../../styles/auth.module.scss";
+import { Authentication } from "../../states/contexts/authContext";
+import { login } from "../../states/actions/auth";
 
 const Signin: React.FC = (): JSX.Element => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [beErrors, setBeErrors] = useState<backendErrors>({});
-
+  const AuthGlobal = useContext(Authentication);
   const navigate = useNavigate();
 
   interface backendErrors {
@@ -18,6 +20,14 @@ const Signin: React.FC = (): JSX.Element => {
     password: string;
   }
 
+  interface FromSigninAPI {
+    id: string;
+    firstName: string;
+    lastName: string;
+    token: string;
+    username: string;
+    email: string;
+  }
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     const obj: SigninData = {
@@ -34,9 +44,27 @@ const Signin: React.FC = (): JSX.Element => {
         body: JSON.stringify(obj),
       });
       const parse = await response.json();
-      setBeErrors(parse.err);
+      if (response.ok) {
+        const { email, first_name, last_name, token, username, user_id } =
+          parse;
+        const loginData: FromSigninAPI = {
+          id: user_id,
+          firstName: first_name,
+          lastName: last_name,
+          token,
+          username,
+          email,
+        };
+        AuthGlobal.dispatchAuth(login(loginData));
+        localStorage.setItem(
+          "authorizationCredentials",
+          JSON.stringify(loginData)
+        );
+      } else {
+        setBeErrors(parse.err);
+      }
     } catch (err) {
-      console.log(err);
+      console.error(JSON.stringify(err));
     }
   };
 
@@ -61,7 +89,7 @@ const Signin: React.FC = (): JSX.Element => {
             placeholder="Username"
             className={styles.authInput}
             style={{
-              outline: beErrors.username
+              outline: beErrors?.username
                 ? "1px solid red"
                 : "0.5px solid #dcdee2",
             }}

@@ -5,7 +5,7 @@ import Signup from "./components/session/signup";
 import Signin from "./components/session/signin";
 import Home from "./components/homepage/home";
 import { AuthProvider } from "./states/contexts/authContext";
-import { PrivateRoute, AuthRoute } from "./protectedRoutes";
+import { AuthRoute } from "./protectedRoutes";
 
 const App: React.FC = (): JSX.Element => {
   return (

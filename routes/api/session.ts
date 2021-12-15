@@ -64,11 +64,30 @@ router.post(
   async (req: express.Request, res: express.Response): Promise<void> => {
     try {
       const response = await req.body;
-      const resp = await response.json();
-      console.log(resp);
+      const resp = response.json();
       // postgresql logic
-      res.json(resp);
+      const { username, password } = resp;
+      const user = await pool.query("SELECT * FROM users WHERE username = $1", [
+        username,
+      ]);
+      if (user.rows.length === 0) {
+        res.status(422).json({ err: "Username not found" });
+      }
+      const foundUser = await user.rows[0];
+      const isSameUser = await bcrypt.compare(password, foundUser.password);
+      if (!isSameUser) {
+        res.status(401).json({ errors: "Invalid Credentials" });
+      }
+      const token = jwtGenerator(foundUser.user_id); // string
+      const payload = await Object.assign(
+        { token: `Bearer ${token}` },
+        foundUser,
+        {}
+      );
+      delete payload["password"];
+      res.status(200).json(payload);
     } catch (err) {
+      console.error("backend err is", err);
       res.status(401).json({ error: err });
     }
   }

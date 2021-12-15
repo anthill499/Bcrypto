@@ -24,7 +24,7 @@ const Signup: React.FC = (): JSX.Element => {
     passwordTwo?: string;
     checked?: string;
   }
-  interface ForAPI {
+  interface ForSignUpAPI {
     username: string;
     firstName: string;
     lastName: string;
@@ -33,7 +33,7 @@ const Signup: React.FC = (): JSX.Element => {
     passwordTwo: string;
     checked: boolean;
   }
-  interface FromAPI {
+  interface FromSignUpAPI {
     id: string;
     firstName: string;
     lastName: string;
@@ -44,7 +44,7 @@ const Signup: React.FC = (): JSX.Element => {
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const obj: ForAPI = {
+    const obj: ForSignUpAPI = {
       username,
       firstName,
       lastName,
@@ -66,7 +66,7 @@ const Signup: React.FC = (): JSX.Element => {
       if (response.ok) {
         const { email, first_name, last_name, token, username, user_id } =
           parse;
-        const loginData: FromAPI = {
+        const loginData: FromSignUpAPI = {
           id: user_id,
           firstName: first_name,
           lastName: last_name,

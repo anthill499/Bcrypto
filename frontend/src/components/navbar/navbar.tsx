@@ -8,7 +8,6 @@ const Navbar: React.FC = (): JSX.Element => {
   const AuthGlobal = useContext(Authentication);
 
   const renderButtons = () => {
-    console.log(AuthGlobal);
     return !AuthGlobal.authState.loggedIn ? (
       <ul id={styles.navbarAuthContainer}>
         <button

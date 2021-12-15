@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
-const validations = (req: Request, res: Response, next: NextFunction) => {
+const validations = async (req: Request, res: Response, next: NextFunction) => {
   interface SignupData {
     username?: string;
     firstName?: string;
@@ -11,17 +11,17 @@ const validations = (req: Request, res: Response, next: NextFunction) => {
     checked?: string;
   }
 
-  const {
-    username,
-    firstName,
-    lastName,
-    email,
-    password,
-    passwordTwo,
-    checked,
-  } = req.body;
   const errors: SignupData = {};
   if (req.path === "/signup") {
+    const {
+      username,
+      firstName,
+      lastName,
+      email,
+      password,
+      passwordTwo,
+      checked,
+    } = await req.body;
     // Username
     if (username.length === 0) errors["username"] = "Username can not be empty";
     // First Name
@@ -47,20 +47,17 @@ const validations = (req: Request, res: Response, next: NextFunction) => {
       errors["passwordTwo"] = "Passwords must match";
     if (passwordTwo.length === 0)
       errors["passwordTwo"] = "Please confirm your password";
-
     // Checked
     if (!checked) errors["checked"] = "Please check terms and conditions";
   } else if (req.path === "/signin") {
+    const { username, password } = await req.body;
     // Username
     if (username.length === 0) errors["username"] = "Username can not be empty";
     // Password
     if (password.length === 0) errors["password"] = "Password can not be empty";
   }
 
-  // const errors = { "username": "Username can not be empty"}
-
-  // Object.values(errors) = ["Username can not empty"]
-  if (Object.values(errors).length > 0) {
+  if (Object.values(errors).length >= 1) {
     return res.status(401).json({ err: { ...errors } });
   }
   next();
