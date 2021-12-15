@@ -99,7 +99,6 @@ const Signup: React.FC = (): JSX.Element => {
           <span>B</span>crypto
         </h3>
         <span className={styles.subLabel}>Create Account</span>
-        <div>{JSON.stringify(AuthGlobal)}</div>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className={styles.rowContainer}>
             <input

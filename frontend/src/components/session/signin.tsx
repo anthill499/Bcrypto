@@ -79,7 +79,7 @@ const Signin: React.FC = (): JSX.Element => {
             placeholder="Password"
             className={styles.authInput}
             style={{
-              outline: beErrors.password
+              outline: beErrors?.password
                 ? "1px solid red"
                 : "0.5px solid #dcdee2",
             }}
