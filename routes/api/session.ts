@@ -64,9 +64,8 @@ router.post(
   async (req: express.Request, res: express.Response): Promise<void> => {
     try {
       const response = await req.body;
-      const resp = response.json();
       // postgresql logic
-      const { username, password } = resp;
+      const { username, password } = response;
       const user = await pool.query("SELECT * FROM users WHERE username = $1", [
         username,
       ]);
