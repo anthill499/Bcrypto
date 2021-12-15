@@ -32,7 +32,6 @@ router.post(
         });
         res.status(422).json({ err: { ...errors } });
       }
-
       // Hashing password
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);

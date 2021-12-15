@@ -24,7 +24,6 @@ const validations = (req: Request, res: Response, next: NextFunction) => {
   if (req.path === "/signup") {
     // Username
     if (username.length === 0) errors["username"] = "Username can not be empty";
-
     // First Name
     if (firstName !== firstName.charAt(0).toUpperCase() + firstName.slice(1))
       errors["firstName"] = "Please enter a valid first name";
@@ -57,6 +56,10 @@ const validations = (req: Request, res: Response, next: NextFunction) => {
     // Password
     if (password.length === 0) errors["password"] = "Password can not be empty";
   }
+
+  // const errors = { "username": "Username can not be empty"}
+
+  // Object.values(errors) = ["Username can not empty"]
   if (Object.values(errors).length > 0) {
     return res.status(401).json({ err: { ...errors } });
   }

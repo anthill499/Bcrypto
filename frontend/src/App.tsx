@@ -5,6 +5,7 @@ import Signup from "./components/session/signup";
 import Signin from "./components/session/signin";
 import Home from "./components/homepage/home";
 import { AuthProvider } from "./states/contexts/authContext";
+import { PrivateRoute, AuthRoute } from "./protectedRoutes";
 
 const App: React.FC = (): JSX.Element => {
   return (
@@ -12,8 +13,22 @@ const App: React.FC = (): JSX.Element => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/register" element={<Signup />} />
-          <Route path="/login" element={<Signin />} />
+          <Route
+            path="/register"
+            element={
+              <AuthRoute redirectTo={"/home"}>
+                <Signup />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <AuthRoute redirectTo={"/home"}>
+                <Signin />
+              </AuthRoute>
+            }
+          />
           <Route path="/home" element={<Home />} />
         </Routes>
       </BrowserRouter>

@@ -17,6 +17,7 @@ export const login = (data: frontendData) => {
 };
 
 export const logout = (): { type: string } => {
+  localStorage.removeItem("authorizationCredentials");
   return {
     type: LOGOUT,
   };

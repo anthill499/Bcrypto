@@ -9,8 +9,7 @@ export interface authState {
   id: string;
   token?: string;
 }
-
-export interface Action {
+export interface AuthAction {
   username?: string;
   email?: string;
   firstName?: string;
@@ -20,18 +19,23 @@ export interface Action {
   token?: string;
 }
 
+const localUser = JSON.parse(
+  localStorage.getItem("authorizationCredentials") || "{}"
+);
+
+// empty object for typing issues
 const initAuth: authState = {
-  loggedIn: false,
-  username: "",
-  id: "",
-  email: "",
-  firstName: "",
-  lastName: "",
+  loggedIn: false || (localUser ? true : false),
+  username: "" || localUser.username,
+  id: "" || localUser.id,
+  email: "" || localUser.email,
+  firstName: "" || localUser.firstName,
+  lastName: "" || localUser.lastName,
 };
 
 const authReducer = (
   state: authState = initAuth,
-  action: Action
+  action: AuthAction
 ): authState => {
   switch (action.type) {
     case LOGIN:

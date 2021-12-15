@@ -74,10 +74,13 @@ const Signup: React.FC = (): JSX.Element => {
           username,
           email,
         };
-
         // dispatch login
-        AuthGlobal.dispatch(login(loginData));
+        AuthGlobal.dispatchAuth(login(loginData));
         // set localStorage
+        localStorage.setItem(
+          "authorizationCredentials",
+          JSON.stringify(loginData)
+        );
       } else {
         setBeErrors(parse.err);
       }
