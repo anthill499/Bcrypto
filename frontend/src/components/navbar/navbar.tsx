@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import styles from "../../styles/navbar.module.scss";
 import { Authentication } from "../../states/contexts/authContext";
 import { logout } from "../../states/actions/auth";
+
 const Navbar: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
   const AuthGlobal = useContext(Authentication);
@@ -25,12 +26,15 @@ const Navbar: React.FC = (): JSX.Element => {
       </ul>
     ) : (
       <ul id={styles.navbarAuthContainer}>
-        <button
-          id={styles.navbarLoginButton}
+        <li className={styles.navbarItem}>Wallet</li>
+        <li className={styles.navbarItem}>Messages</li>
+        <li className={styles.navbarItem}>Account</li>
+        <li
+          className={styles.navbarItem}
           onClick={() => AuthGlobal.dispatchAuth(logout())}
         >
           Log Out
-        </button>
+        </li>
       </ul>
     );
   };

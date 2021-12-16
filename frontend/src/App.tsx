@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./components/landing/landing";
 import Signup from "./components/session/signup";
 import Signin from "./components/session/signin";
 import Home from "./components/homepage/home";
+import Loading from "./components/loading/loading";
 import { AuthProvider } from "./states/contexts/authContext";
 import { AuthRoute } from "./protectedRoutes";
 
 const App: React.FC = (): JSX.Element => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   return (
     <AuthProvider>
       <BrowserRouter>
@@ -30,6 +32,7 @@ const App: React.FC = (): JSX.Element => {
             }
           />
           <Route path="/home" element={<Home />} />
+          <Route path="/loading" element={<Loading />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
