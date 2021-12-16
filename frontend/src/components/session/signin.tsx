@@ -3,11 +3,13 @@ import { useNavigate } from "react-router";
 import styles from "../../styles/auth.module.scss";
 import { Authentication } from "../../states/contexts/authContext";
 import { login } from "../../states/actions/auth";
+import Loading from "../loading/loading";
 
 const Signin: React.FC = (): JSX.Element => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [beErrors, setBeErrors] = useState<backendErrors>({});
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const AuthGlobal = useContext(Authentication);
   const navigate = useNavigate();
 
@@ -45,26 +47,31 @@ const Signin: React.FC = (): JSX.Element => {
     });
     const parse = await response.json();
     if (response.ok) {
-      const { email, first_name, last_name, token, username, user_id } = parse;
-      const loginData: FromSigninAPI = {
-        id: user_id,
-        firstName: first_name,
-        lastName: last_name,
-        token,
-        username,
-        email,
-      };
-      AuthGlobal.dispatchAuth(login(loginData));
-      localStorage.setItem(
-        "authorizationCredentials",
-        JSON.stringify(loginData)
-      );
+      setIsLoading(!isLoading);
+      setTimeout(() => {
+        const { email, first_name, last_name, token, username, user_id } =
+          parse;
+        const loginData: FromSigninAPI = {
+          id: user_id,
+          firstName: first_name,
+          lastName: last_name,
+          token,
+          username,
+          email,
+        };
+        AuthGlobal.dispatchAuth(login(loginData));
+        localStorage.setItem(
+          "authorizationCredentials",
+          JSON.stringify(loginData)
+        );
+        setIsLoading(!isLoading);
+      }, 1700);
     } else {
       console.log(parse, response);
       setBeErrors(parse.err);
     }
   };
-
+  if (isLoading) return <Loading />;
   return (
     <div className={styles.authDiv}>
       <div className={styles.authContainer}>

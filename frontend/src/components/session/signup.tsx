@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import styles from "../../styles/auth.module.scss";
 import { login } from "../../states/actions/auth";
 import { Authentication } from "../../states/contexts/authContext";
+import Loading from "../loading/loading";
 const Signup: React.FC = (): JSX.Element => {
   const [username, setUsername] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
@@ -12,6 +13,7 @@ const Signup: React.FC = (): JSX.Element => {
   const [passwordTwo, setPasswordTwo] = useState<string>("");
   const [checked, setChecked] = useState<boolean>(false);
   const [beErrors, setBeErrors] = useState<backendErrors>({});
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const AuthGlobal = useContext(Authentication);
 
@@ -64,23 +66,28 @@ const Signup: React.FC = (): JSX.Element => {
       });
       const parse = await response.json();
       if (response.ok) {
-        const { email, first_name, last_name, token, username, user_id } =
-          parse;
-        const loginData: FromSignUpAPI = {
-          id: user_id,
-          firstName: first_name,
-          lastName: last_name,
-          token,
-          username,
-          email,
-        };
-        // dispatch login
-        AuthGlobal.dispatchAuth(login(loginData));
-        // set localStorage
-        localStorage.setItem(
-          "authorizationCredentials",
-          JSON.stringify(loginData)
-        );
+        setIsLoading(!isLoading);
+        setTimeout(() => {
+          // remove this until API call gets expensive
+          const { email, first_name, last_name, token, username, user_id } =
+            parse;
+          const loginData: FromSignUpAPI = {
+            id: user_id,
+            firstName: first_name,
+            lastName: last_name,
+            token,
+            username,
+            email,
+          };
+          // dispatch login
+          AuthGlobal.dispatchAuth(login(loginData));
+          // set localStorage
+          localStorage.setItem(
+            "authorizationCredentials",
+            JSON.stringify(loginData)
+          );
+          setIsLoading(!isLoading);
+        }, 1700);
       } else {
         setBeErrors(parse.err);
       }
@@ -88,6 +95,7 @@ const Signup: React.FC = (): JSX.Element => {
       console.log({ err: JSON.stringify(err) });
     }
   };
+  if (isLoading) return <Loading />;
 
   return (
     <div className={styles.authDiv}>

@@ -3,9 +3,7 @@ import styles from "../../styles/loading.module.scss";
 const Loading: React.FC = (): JSX.Element => {
   return (
     <div className={styles.loadingContainer}>
-      <div>
-        <HashLoader color={"black"} loading={true} size={50} />
-      </div>
+      <HashLoader color={"black"} loading={true} size={100} />
     </div>
   );
 };

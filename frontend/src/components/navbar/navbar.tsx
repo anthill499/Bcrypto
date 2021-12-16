@@ -7,7 +7,6 @@ import { logout } from "../../states/actions/auth";
 const Navbar: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
   const AuthGlobal = useContext(Authentication);
-
   const renderButtons = () => {
     return !AuthGlobal.authState.loggedIn ? (
       <ul id={styles.navbarAuthContainer}>
