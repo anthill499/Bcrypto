@@ -87,7 +87,7 @@ const Signup: React.FC = (): JSX.Element => {
             JSON.stringify(loginData)
           );
           setIsLoading(!isLoading);
-        }, 1700);
+        }, 2200);
       } else {
         setBeErrors(parse.err);
       }
@@ -95,8 +95,10 @@ const Signup: React.FC = (): JSX.Element => {
       console.log({ err: JSON.stringify(err) });
     }
   };
+  // Loading catch
   if (isLoading) return <Loading />;
 
+  // return component
   return (
     <div className={styles.authDiv}>
       <div className={styles.authContainer}>

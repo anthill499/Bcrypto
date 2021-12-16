@@ -65,13 +65,17 @@ const Signin: React.FC = (): JSX.Element => {
           JSON.stringify(loginData)
         );
         setIsLoading(!isLoading);
-      }, 1700);
+      }, 2200);
     } else {
       console.log(parse, response);
       setBeErrors(parse.err);
     }
   };
+
+  // Loading catch
   if (isLoading) return <Loading />;
+
+  // return component
   return (
     <div className={styles.authDiv}>
       <div className={styles.authContainer}>
