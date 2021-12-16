@@ -37,10 +37,18 @@ const validations = async (req: Request, res: Response, next: NextFunction) => {
       errors["lastName"] = "Last name can not be empty";
 
     // Email
-    if (email.length === 0) errors["email"] = "Email can not be empty";
-
-    // Password
-    if (password.length === 0) errors["password"] = "Password can not be empty";
+    if (email.length === 0) {
+      errors["email"] = "Email can not be empty";
+    } else if (
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        email
+      ) === false
+    ) {
+      errors["email"] = "Please enter a valid email";
+    }
+    if (password.length === 0)
+      // Password
+      errors["password"] = "Password can not be empty";
 
     // Password 2
     if (password !== passwordTwo)

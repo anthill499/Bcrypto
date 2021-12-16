@@ -4,6 +4,7 @@ import styles from "../../styles/auth.module.scss";
 import { login } from "../../states/actions/auth";
 import { Authentication } from "../../states/contexts/authContext";
 import Loading from "../loading/loading";
+
 const Signup: React.FC = (): JSX.Element => {
   const [username, setUsername] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
@@ -95,6 +96,7 @@ const Signup: React.FC = (): JSX.Element => {
       console.log({ err: JSON.stringify(err) });
     }
   };
+
   // Loading catch
   if (isLoading) return <Loading />;
 

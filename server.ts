@@ -17,7 +17,6 @@ app.get("/test", (req: express.Request, res: express.Response) => {
 });
 
 // https://localhost3000/test
-
 app.listen(port, () => {
   console.log(`Bcryto's server is running on Port ${port}`);
 });

@@ -100,11 +100,11 @@ router.post(
 // Test in postman
 router.get(
   "/test",
-  async (req: express.Request, res: express.Response): Promise<void> => {
+  async (req: express.Request, res: express.Response): Promise<any> => {
     try {
-      res.status(200).json({ message: "Working test route" });
+      return res.status(200).json({ message: "Working test route" });
     } catch (err) {
-      res.status(401).json({ error: "Test route error" });
+      return res.status(401).json({ error: "Test route error" });
     }
   }
 );
