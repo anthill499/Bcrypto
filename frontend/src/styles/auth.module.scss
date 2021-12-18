@@ -119,47 +119,7 @@ $linkBlue: #1919ff;
   text-align: center;
 }
 
-// .parentTitle:hover {
-//   animation: earthquake 1s linear;
-//   transition: 0.4s ease-in-out;
-// }
-
 .parentTitle:active {
   transform: translateY(2px);
 }
 
-// @keyframes earthquake {
-//   0% {
-//     transform: rotate(0deg);
-//     letter-spacing: 1px;
-//     color: black;
-//   }
-//   10% {
-//     transform: rotate(0.25deg);
-//     letter-spacing: 1.5px;
-//     color: black;
-//   }
-//   25% {
-//     letter-spacing: 2px;
-//     transform: rotate(0.5deg);
-//     color: rgb(39, 39, 39);
-//   }
-//   50% {
-//     letter-spacing: 3px;
-//     transform: rotate(0deg);
-//     text-shadow: 1px 1px 2px 1px black;
-//     font-weight: 600;
-//   }
-//   75% {
-//     letter-spacing: 2px;
-//     transform: rotate(-0.5deg);
-//   }
-//   90% {
-//     letter-spacing: 1.5px;
-//     transform: rotate(-0.25deg);
-//   }
-//   100% {
-//     letter-spacing: 1px;
-//     transform: rotate(0deg);
-//   }
-// }
