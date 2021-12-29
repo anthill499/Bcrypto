@@ -2,7 +2,6 @@ import { Fragment } from "react";
 import { useNavigate } from "react-router";
 import styles from "../../styles/splash.module.scss";
 import Image from "../../assets/images/bcryptoart.png";
-
 const Splash: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
   return (

@@ -3,10 +3,12 @@ import ReactDOM from "react-dom";
 import "./styles/reset.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import ChatboxIcon from "./components/Chatbox/chatbox";
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <ChatboxIcon />
   </React.StrictMode>,
   document.getElementById("root")
 );
