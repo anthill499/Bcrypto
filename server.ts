@@ -9,6 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api/session", require("./routes/api/session"));
+app.use("/api/coins", require("./routes/api/coins"));
 // https://localhost:3000/api/session/signup
 
 // test route

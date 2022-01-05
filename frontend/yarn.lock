@@ -7704,6 +7704,11 @@
     "lower-case" "^2.0.2"
     "tslib" "^2.0.3"
 
+"node-env@^0.1.6":
+  "integrity" "sha1-3GVw8PkS5Yqee3K+7tJgLs/WPiE="
+  "resolved" "https://registry.npmjs.org/node-env/-/node-env-0.1.6.tgz"
+  "version" "0.1.6"
+
 "node-forge@^0.10.0":
   "integrity" "sha512-PPmu8eEeG9saEUvI97fm4OYxXVB6bFvyNTyiUOBichBpFG8A1Ljw3bY62+5oOjDEMHRnd0Y7HQ+x7uzxOzC6JA=="
   "resolved" "https://registry.npmjs.org/node-forge/-/node-forge-0.10.0.tgz"
