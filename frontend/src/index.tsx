@@ -8,7 +8,7 @@ import ChatboxIcon from "./components/Chatbox/chatbox";
 ReactDOM.render(
   <React.StrictMode>
     <App />
-    <ChatboxIcon />
+    {/* <ChatboxIcon /> */}
   </React.StrictMode>,
   document.getElementById("root")
 );
