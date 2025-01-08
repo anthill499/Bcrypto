@@ -1,4 +1,4 @@
-import Navbar from "../navbar/navbar";
+import Navbar from "../navbar/Navbar";
 import Splash from "../splash/splash";
 import styles from "../../styles/landing.module.scss";
 

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import styles from "../../styles/auth.module.scss";
 import { login } from "../../states/actions/auth";
 import { Authentication } from "../../states/contexts/authContext";
-import Loading from "../loading/loading";
+import Loading from "../loading/Loading";
 
 const Signup: React.FC = (): JSX.Element => {
   const [username, setUsername] = useState<string>("");

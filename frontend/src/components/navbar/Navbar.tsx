@@ -6,7 +6,9 @@ import { logout } from "../../states/actions/auth";
 
 const Navbar: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
-  const AuthGlobal = useContext(Authentication);
+  const AuthGlobal = useContext(Authentication); // Authentication State
+
+  // Dynamic Buttons for logged out users
   const renderButtons = () => {
     return !AuthGlobal.authState.loggedIn ? (
       <ul id={styles.navbarAuthContainer}>
@@ -37,16 +39,26 @@ const Navbar: React.FC = (): JSX.Element => {
       </ul>
     );
   };
+
+  // TODO: Implement click events
+  const renderDefaultNavbarOptions = () => {
+    return (
+      <ul id={styles.navbar}>
+        <div id={styles.logo}>Bcrypto</div>
+          <li className={styles.navbarItem}>Documentation</li>
+          <li className={styles.navbarItem}>Pricing</li>
+          <li className={styles.navbarItem}>Contact Us</li>
+          <li className={styles.navbarItem}>Product</li>
+
+      </ul>
+    )
+  }
+
+  // 
   return (
     <div className={styles.navbarBackground}>
       <div className={styles.navbarContainer}>
-        <ul id={styles.navbar}>
-          <div id={styles.logo}>Bcrypto</div>
-          <li className={styles.navbarItem}>News</li>
-          <li className={styles.navbarItem}>Market</li>
-          <li className={styles.navbarItem}>Contact Us</li>
-          <li className={styles.navbarItem}>Our story</li>
-        </ul>
+        {renderDefaultNavbarOptions()}
         {renderButtons()}
       </div>
     </div>

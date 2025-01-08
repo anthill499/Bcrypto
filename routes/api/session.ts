@@ -1,9 +1,10 @@
 import * as express from "express";
-const router = express.Router();
+import router from "./entry"
 const bcrypt = require("bcryptjs");
 const { validations } = require("../../middleware/authMiddleware");
 const pool = require("../../postgres");
 const jwtGenerator = require("../../util/jwtAuthorizer");
+
 interface authErrors {
   username?: string;
   email?: string;
@@ -109,4 +110,3 @@ router.get(
   }
 );
 
-module.exports = router;
